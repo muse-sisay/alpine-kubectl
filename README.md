@@ -11,6 +11,6 @@ docker run --rm -it -v ${HOME}:/root/ ${pwd}:/work -w /work smuse/alpine-kubectl
 ## Build 
 
 ```console
-kubectl_version=v.1.24.1
+kubectl_version=v1.24.1
 docker build . --build-arg kubectl_version=$kubectl_version -t smuse/alpine-kubectl:$kubectl_version 
 ```
