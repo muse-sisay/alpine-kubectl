@@ -8,9 +8,10 @@ RUN curl -L https://storage.googleapis.com/kubernetes-release/release/$kubectl_v
 
 RUN chmod u+x /usr/local/bin/kubectl
 
-# Enable bash-completion and add alias 
+# Enable bash-completion, add alias and shell prompt
 RUN echo  -e \
-"alias k=kubectl \n \
+"PS1=\"\[\033[32m\] \W\[\033[37m\] \$ \" \n \
+alias k=kubectl \n \
 export do=\"-o=yaml --dry-run=client\" \n \
 complete -F __start_kubectl k  \n \
 $(kubectl completion bash ) " \
