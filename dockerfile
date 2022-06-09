@@ -1,6 +1,6 @@
 FROM alpine:3.16.0
 
-RUN apk add --no-cache curl nano bash-completion
+RUN apk add --no-cache curl vim bash-completion
 
 ARG kubectl_version
 
@@ -11,11 +11,21 @@ RUN chmod u+x /usr/local/bin/kubectl
 # Enable bash-completion and add alias 
 RUN echo  -e \
 "alias k=kubectl \n \
+export do=\"-o=yaml --dry-run=client\" \n \
 complete -F __start_kubectl k  \n \
 $(kubectl completion bash ) " \
 >> ~/.bashrc 
 
+# Configure vim for YAML files
+RUN  echo -e \
+"colorscheme ron \n \
+set tabstop=2 \n \
+set shiftwidth=2 \n \
+set expandtab \n \
+set autoindent \
+" >> ~/.vimrc
+
 # Configure default editor to nano
-ENV KUBE_EDITOR="nano"
+ENV KUBE_EDITOR="vim"
 
 ENTRYPOINT bash
