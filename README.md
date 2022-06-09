@@ -1,11 +1,12 @@
 # alpine-kubectl 
 
-*alpine image with kubectl and bash completion enabled*
+*alpine image with kubectl, bash completion enabled, and vim for yaml configured*
 
 <br>
 
 ```console
-docker run --rm -it -v ${HOME}:/root/ ${pwd}:/work -w /work smuse/alpine-kubectl:v1.24.1
+docker run --rm -it -v ~/.kube:/.kube -v ${PWD}:/work \ 
+-w /work smuse/alpine-kubectl:v1.24.1
 ```
 
 ## Build 
